@@ -12,7 +12,7 @@
     "Bot"
   ],
   "author": "Arthur Dufour",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "get-json": "^1.0.0",
     "twit": "^2.2.9"
