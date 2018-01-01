@@ -2,18 +2,17 @@
 console.log("Tweether 1.0-1 is starting... \n\n");
 
 
-// On vérifie que le package 'twit' est installé (npm install twit)
+// On vérifie que les packages sont bien installés :
 var Twit = require('twit');
-// On vérifie que le package 'get-json' est installé (npm install get-json)
 var getJSON = require('get-json')
-// On vérifie que le fichier de config est bien présent
+// On vérifie tout les fichiers de codes sont bien présents :
 var config = require('./config');
 // On déclare l'instance du bot avec les logins situés dans le fichier config
 var T = new Twit(config);
 
 
 
-// main();
+// Lancement du script
 main();
 
 
@@ -30,26 +29,26 @@ function main() {
   T.get('followers/list', id, gotData);
 
   function gotData(err, data, response) {
+    // DEBUG : Vérification erreur sur la requête GET :
     if (err) {
-      console.log("Un problème est survenu !");
+      console.log("ERREUR : Get followers list : " + err);
+
+      // Pas d'erreur :
     } else {
 
-      // On boucle sur chaque follower du bot :
+      // On boucle sur chaque followers du bot :
       for (var i = 0; i < data.users.length; i++) {
 
         // On vérifie que sa location est bien définie :
         if (data.users[i].location.length != 0) {
 
-
-          // On envoie les données :
+          // On transmet location & screen_name :
           whatsTheWeatherIn(data.users[i].location, data.users[i].screen_name);
-
 
           // Si la location n'est pas définie :
         } else {
           console.log("Pas de location définie pour : " + data.users[i].screen_name + "\n\n");
         }
-
 
       }
 
@@ -59,41 +58,18 @@ function main() {
 }
 
 
-
-// Envoie du tweet :
-function tweetIt(meteo) {
-
-  // Tweet a envoyer :
-  var tweet = {
-    status: meteo
-  }
-
-
-  // Construction du tweet via l'API de Twit :
-  T.post('statuses/update', tweet, posted);
-
-
-  // Callback (debug) :
-  function posted(err, data, response) {
-    if (err) {
-      console.log("ERREUR : Envoi du tweet");
-    } else {
-      console.log("Le tweet a bien été envoyé !");
-    }
-  }
-
-}
-
-
-
-
-
 // Récupération de la météo :
-function whatsTheWeatherIn(city, user) {
+function whatsTheWeatherIn(location, user) {
+
+
+  // Traitement "location" & transformation en ville + pays :
+  var temp = location.split(", ");
+  var city = temp[0];
+  var country = temp[1];
 
 
   // Chargement du lien :
-  getJSON('http://api.openweathermap.org/data/2.5/forecast?q=' + city + ',fr&units=metric&APPID=8445323e2d375eef7e097a6617b4af68', function(error, response){
+  getJSON('http://api.openweathermap.org/data/2.5/forecast?q=' + city + ',' + country + '&units=metric&APPID=8445323e2d375eef7e097a6617b4af68', function(error, response){
 
     // On vérifire que l'on reçoit bien les données :
     if (error != null) {
@@ -104,7 +80,16 @@ function whatsTheWeatherIn(city, user) {
       // Les donneés ont bien été reçues :
     } else {
 
+      // Fonction servant au calcul de l'heure actuelle :
+      function addZero(i) {
+          if (i < 10) {
+              i = "0" + i;
+          } return i;
+      }
+
       // Construction du message :
+      meteoTime = new Date();
+      meteoTime = addZero(meteoTime.getHours()) + "h" + addZero(meteoTime.getMinutes());
       meteoCity = response.city.name;
       meteoCurrTemp = response.list[0].main.temp;
       meteoMinTemp = response.list[0].main.temp_min;
@@ -152,24 +137,54 @@ function whatsTheWeatherIn(city, user) {
         meteoWindDir = "Erreur !";
       }
 
+
       // Construction du message :
-      meteo = "@" + user + "\n🌦️ Actuellement à " + meteoCity + " : " + meteoDesc + "\n\n"
+      meteo = "@" + user + "\n🌦️ Météo, " + meteoTime + " à " + meteoCity + " : " + meteoDesc + "\n\n"
             + "🌡️ Actuellement : " + meteoCurrTemp + "°C\n"
             + "🌡️ Min : " + meteoMinTemp + "°C - Max : " + meteoMaxTemp + "°C\n"
             + "☁️ Couvert à : " + meteoClouds + "%\n"
             + "💧 Humidité : " + meteoHumidity + "%\n"
             + "🌪️ " + meteoWindSpeed + " km/h - " + meteoWindDir;
 
-        console.log(meteo);
+        console.log(meteo + "\n\n\n");
+
 
       // Envoie du Tweet :
       tweetIt(meteo);
-
 
     }
 
 
   })
 
+
+}
+
+
+
+
+
+
+// Envoie du tweet :
+function tweetIt(meteo) {
+
+  // Tweet a envoyer :
+  var tweet = {
+    status: meteo
+  }
+
+
+  // Construction du tweet via l'API de Twit :
+  T.post('statuses/update', tweet, posted);
+
+
+  // Callback (debug) :
+  function posted(err, data, response) {
+    if (err) {
+      console.log("ERREUR : Envoi du tweet");
+    } else {
+      console.log("Le tweet a bien été envoyé !");
+    }
+  }
 
 }
