@@ -47,7 +47,7 @@ function main() {
 
           // Si la location n'est pas définie :
         } else {
-          console.log("Pas de location définie pour : " + data.users[i].screen_name + "\n\n");
+          console.log("Pas de location définie pour : " + data.users[i].screen_name + "\n\n\n");
         }
 
       }
@@ -110,7 +110,7 @@ function whatsTheWeatherIn(location, user) {
         break;
 
         default:
-          meteoDesc = 'ERREUR !';
+          meteoDesc = 'ERREUR ! Description inconnue...';
       }
 
       // Traduction de l'angle de provenance du vent en direction :
@@ -146,11 +146,23 @@ function whatsTheWeatherIn(location, user) {
             + "💧 Humidité : " + meteoHumidity + "%\n"
             + "🌪️ " + meteoWindSpeed + " km/h - " + meteoWindDir;
 
+      error = "@" + user + "\n⚠️ Une erreur est survenue !\n⚠️ Merci de contacter @Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
+
+
+
+      // Si il n'y a pas d'erreur :
+      if (meteo.indexOf("ERREUR") == -1) {
+
         console.log(meteo + "\n\n\n");
+        tweetIt(meteo);
 
+        // Si le tweet contient une erreur :
+      } else {
 
-      // Envoie du Tweet :
-      tweetIt(meteo);
+        console.log(error + "\n\n\n");
+        tweetIt(error);
+
+      }
 
     }
 
