@@ -6,9 +6,9 @@ console.log("Tweether 1.0-1 is starting... \n\n");
 var Twit = require('twit');
 var getJSON = require('get-json')
 // On vérifie tout les fichiers de codes sont bien présents :
-var config = require('./config');
+var login = require('./login');
 // On déclare l'instance du bot avec les logins situés dans le fichier config
-var T = new Twit(config);
+var T = new Twit(login);
 
 
 
