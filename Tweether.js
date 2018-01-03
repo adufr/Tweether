@@ -12,6 +12,17 @@ var T = new Twit(config);
 
 
 
+
+// Messages d'erreur :
+error = "\n\n⚠️ Une erreur est survenue lors de l'envoie de votre bulletin météo !\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
+errorNoLoc = "\n\n⚠️ Une erreur est survenue lors de l'envoie de votre bulletin météo !\n⚠️ Vous n'avez pas défini de localisation sur votre page de profil !\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
+errorInvalidLoc = "\n\n⚠️ Une erreur est survenue lors de l'envoie de votre bulletin météo !\n⚠️ Veuillez indiquer une localisation valide !\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
+
+
+
+
+
+
 // Lancement du script
 main();
 
@@ -83,13 +94,11 @@ function whatsTheWeatherIn(location, user) {
       // On vérifire que l'on reçoit bien les données :
       if (error != null) {
 
-        // DEBUG :
-        console.log("ERREUR : réception données météo :\n" + error);
 
         // Envoie d'un tweet d'erreur ciblé :
-        errorOWM = "@" + user + "\n\n⚠️ Une erreur est survenue lors de l'envoie de votre bulletin météo !\n⚠️ Veuillez indiquer une localisation valide !\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
-        console.log(errorOWM + "\n\n\n");
-        tweetIt(errorOWM);
+        console.log("@" + user + errorInvalidLoc + "\n\n\n");
+        tweetIt("@" + user + errorInvalidLoc);
+
 
         // Les donneés ont bien été reçues :
       } else {
@@ -412,8 +421,6 @@ function whatsTheWeatherIn(location, user) {
               + "💧 Humidité : " + meteoHumidity + "%\n"
               + "🌪️ " + meteoWindSpeed + " km/h - " + meteoWindDir;
 
-        error = "@" + user + "\n\n⚠️ Une erreur est survenue lors de l'envoie de votre bulletin météo !\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
-
 
         // Si il n'y a pas d'erreur :
         if (meteo.indexOf("ERREUR") == -1) {
@@ -426,8 +433,8 @@ function whatsTheWeatherIn(location, user) {
         } else {
 
           // Envoie d'un tweet d'erreur :
-          console.log(error + "\n\n\n");
-          tweetIt(error);
+          console.log("@" + user + error + "\n\n\n");
+          tweetIt("@" + user + error);
 
         }
 
@@ -442,7 +449,7 @@ function whatsTheWeatherIn(location, user) {
   } else {
 
     // Envoie message d'erreur : activer localisation
-    tweetIt("@" + data.users[i].screen_name + "\n\n⚠️ Une erreur est survenue lors de l'envoie de votre bulletin météo !\n⚠️ Vous n'avez pas défini de localisation sur votre page de profil !\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new");
+    tweetIt("@" + user + errorNoLoc);
 
   }
 
@@ -470,7 +477,7 @@ function tweetIt(meteo) {
   // Callback (debug) :
   function posted(err, data, response) {
     if (err) {
-      console.log("ERREUR : Envoi du tweet");
+      console.log("Le tweet n'a pas été envoyé : " + err + "\n\n============================\n\n");
     } else {
       console.log("Le tweet a bien été envoyé !");
     }
