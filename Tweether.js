@@ -43,7 +43,7 @@ function main() {
         if (data.users[i].location.length != 0) {
 
           // On transmet location & screen_name :
-          whatsTheWeatherIn(data.users[i].location, data.users[i].screen_name);
+          whatsTheWeatherIn(data.users[i].location, "Woosy__");
 
           // Si la location n'est pas définie :
         } else {
@@ -78,7 +78,7 @@ function whatsTheWeatherIn(location, user) {
       console.log("ERREUR : réception données météo :\n" + error);
 
       // Envoie d'un tweet d'erreur ciblé :
-      errorOWM = "@" + user + "\n\n⚠️ Une erreur est survenue lors de l'envoie de votre bulletin météo !\n⚠️ Veuillez indiquer une localisation VALIDE !\n\n⚠️ Si le problème persiste sans raison, merci de contacter @Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
+      errorOWM = "@" + user + "\n\n⚠️ Une erreur est survenue lors de l'envoie de votre bulletin météo !\n⚠️ Veuillez indiquer une localisation VALIDE !\n\n⚠️ Si le problème persiste, merci de contacter @Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
       console.log(errorOWM + "\n\n\n");
       tweetIt(errorOWM);
 
@@ -396,14 +396,14 @@ function whatsTheWeatherIn(location, user) {
 
 
       // Construction du message :
-      meteo = "@" + user + "\n🌦️ Météo, " + meteoTime + " à " + meteoCity + " : " + meteoDesc + "\n\n"
+      meteo = "@" + user + "\n\n🌦️ Météo, " + meteoTime + " à " + meteoCity + " : " + meteoDesc + "\n\n"
             + "🌡️ Actuellement : " + meteoCurrTemp + "°C\n"
             + "🌡️ Min : " + meteoMinTemp + "°C - Max : " + meteoMaxTemp + "°C\n"
             + "☁️ Couvert à : " + meteoClouds + "%\n"
             + "💧 Humidité : " + meteoHumidity + "%\n"
             + "🌪️ " + meteoWindSpeed + " km/h - " + meteoWindDir;
 
-      error = "@" + user + "\n\n⚠️ Une erreur est survenue lors de l'envoie de votre bulletin météo !\n⚠️ Si le problème persiste sans raison, merci de contacter @Woosy__\n\n📝 https://github.com/Woosy/Tweether/issues/new";
+      error = "@" + user + "\n\n⚠️ Une erreur est survenue lors de l'envoie de votre bulletin météo !\n⚠️ Si le problème persiste, merci de contacter @Woosy__\n\n📝 https://github.com/Woosy/Tweether/issues/new";
 
 
       // Si il n'y a pas d'erreur :
