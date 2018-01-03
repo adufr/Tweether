@@ -43,7 +43,7 @@ function main() {
         if (data.users[i].location.length != 0) {
 
           // On transmet location & screen_name :
-          whatsTheWeatherIn(data.users[i].location, "Woosy__");
+          whatsTheWeatherIn(data.users[i].location, data.users[i].screen_name);
 
           // Si la location n'est pas définie :
         } else {
