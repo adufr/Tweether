@@ -373,25 +373,25 @@ function whatsTheWeatherIn(location, user) {
       // Traduction de l'angle de provenance du vent en direction :
       temp = response.list[0].wind.deg;
       if ((temp >= 0) && (temp < 22.5)) {
-        meteoWindDir = "⬆️ Nord";
-      } else if ((temp >= 22.5) && (temp <= 67.5)) {
-        meteoWindDir = "↗️ Nord-Est";
-      } else if ((temp > 67.5) && (temp < 112.5)) {
-        meteoWindDir = "➡️ Est";
-      } else if ((temp >= 112.5) && (temp <= 157.5)) {
-        meteoWindDir = "↘️ Sud-Est";
-      } else if ((temp > 157.5) && (temp < 202.5)) {
-        meteoWindDir = "⬇️ Sud";
-      } else if ((temp >= 202.5) && (temp <= 247.5)) {
-        meteoWindDir = "↙️ Sud-Ouest";
-      } else if ((temp > 247.5) && (temp < 292.5)) {
-        meteoWindDir = "⬅️ Ouest";
-      } else if ((temp >= 292.5) && (temp <= 337.5)) {
-        meteoWindDir = "↖️ Nord-Ouest";
-      } else if ((temp > 337.5) && (temp <= 360)) {
-        meteoWindDir = "⬆️ Nord";
-      } else {
-        meteoWindDir = "Erreur !";
+          meteoWindDir = "⬇️ Nord";
+        } else if ((temp >= 22.5) && (temp <= 67.5)) {
+          meteoWindDir = "↙️ Nord-Est";
+        } else if ((temp > 67.5) && (temp < 112.5)) {
+          meteoWindDir = "⬅️ Est";
+        } else if ((temp >= 112.5) && (temp <= 157.5)) {
+          meteoWindDir = "↖️ Sud-Est";
+        } else if ((temp > 157.5) && (temp < 202.5)) {
+          meteoWindDir = "⬆️ Sud";
+        } else if ((temp >= 202.5) && (temp <= 247.5)) {
+          meteoWindDir = "↗️ Sud-Ouest";
+        } else if ((temp > 247.5) && (temp < 292.5)) {
+          meteoWindDir = "➡️ Ouest";
+        } else if ((temp >= 292.5) && (temp <= 337.5)) {
+          meteoWindDir = "↘️ Nord-Ouest";
+        } else if ((temp > 337.5) && (temp <= 360)) {
+          meteoWindDir = "⬇️ Nord";
+        } else {
+          meteoWindDir = "Erreur !";
       }
 
 
@@ -409,12 +409,14 @@ function whatsTheWeatherIn(location, user) {
       // Si il n'y a pas d'erreur :
       if (meteo.indexOf("ERREUR") == -1) {
 
+        // Envoie du Tweet :
         console.log(meteo + "\n\n\n");
         tweetIt(meteo);
 
         // Si le tweet contient une erreur :
       } else {
 
+        // Envoie d'un tweet d'erreur :
         console.log(error + "\n\n\n");
         tweetIt(error);
 
