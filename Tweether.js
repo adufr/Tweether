@@ -9,6 +9,7 @@ var getJSON = require('get-json')
 var login = require('./Login');
 var weather = require('./Weather');
 var twitter = require('./Twitter');
+var utils = require('./Utils');
 
 // On déclare l'instance du bot avec les logins situés dans le fichier config
 var T = new Twit(login);
@@ -114,8 +115,7 @@ function whatsTheWeatherIn(location, user) {
         }
 
         // Construction du message :
-        meteoTime = new Date();
-        meteoTime = addZero(meteoTime.getHours()) + "h" + addZero(meteoTime.getMinutes());
+        meteoTime = utils.getHour();
         meteoCity = response.city.name;
         meteoCurrTemp = response.list[0].main.temp;
         meteoMinTemp = response.list[0].main.temp_min;
