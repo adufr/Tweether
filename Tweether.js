@@ -8,6 +8,7 @@ var getJSON = require('get-json')
 // On vérifie tout les fichiers de codes sont bien présents :
 var login = require('./Login');
 var weather = require('./Weather');
+var twitter = require('./Twitter');
 
 // On déclare l'instance du bot avec les logins situés dans le fichier config
 var T = new Twit(login);
@@ -99,7 +100,7 @@ function whatsTheWeatherIn(location, user) {
 
         // Envoie d'un tweet d'erreur ciblé :
         console.log("@" + user + errorInvalidLoc + "\n\n\n");
-        tweetIt("@" + user + errorInvalidLoc);
+        twitter.sendTweet("@" + user + errorInvalidLoc);
 
 
         // Les donneés ont bien été reçues :
@@ -145,14 +146,14 @@ function whatsTheWeatherIn(location, user) {
 
           // Envoie du Tweet :
           console.log(meteo + "\n\n\n");
-          tweetIt(meteo);
+          twitter.sendTweet(meteo);
 
           // Si le tweet contient une erreur :
         } else {
 
           // Envoie d'un tweet d'erreur :
           console.log("@" + user + error + "\n\n\n");
-          tweetIt("@" + user + error);
+          twitter.sendTweet("@" + user + error);
 
         }
 
@@ -167,38 +168,9 @@ function whatsTheWeatherIn(location, user) {
   } else {
 
     // Envoie message d'erreur : activer localisation
-    tweetIt("@" + user + errorNoLoc);
+    twitter.sendTweet("@" + user + errorNoLoc);
 
   }
 
-
-}
-
-
-
-
-
-
-// Envoie du tweet :
-function tweetIt(meteo) {
-
-  // Tweet a envoyer :
-  var tweet = {
-    status: meteo
-  }
-
-
-  // Construction du tweet via  l'API de Twit :
-  T.post('statuses/update', tweet, posted);
-
-
-  // Callback (debug) :
-  function posted(err, data, response) {
-    if (err) {
-      console.log("Le tweet n'a pas été envoyé : " + err + "\n\n============================\n\n");
-    } else {
-      console.log("Le tweet a bien été envoyé !");
-    }
-  }
 
 }
