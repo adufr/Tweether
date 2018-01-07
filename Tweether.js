@@ -84,10 +84,10 @@ function whatsTheWeatherIn(location, user) {
 
 
     // Chargement du lien :
-    getJSON('http://api.openweathermap.org/data/2.5/forecast?q=' + city + ',' + country + '&units=metric&APPID=8445323e2d375eef7e097a6617b4af68', function(error, response){
+    getJSON('http://api.openweathermap.org/data/2.5/forecast?q=' + city + ',' + country + '&units=metric&APPID=8445323e2d375eef7e097a6617b4af68', function(miss, response){
 
       // On vérifire que l'on reçoit bien les données :
-      if (error != null) {
+      if (miss != null) {
 
 
         // Envoie d'un tweet d'erreur ciblé :
