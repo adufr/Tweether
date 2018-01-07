@@ -10,20 +10,10 @@ var login = require('./Login');
 var weather = require('./Weather');
 var twitter = require('./Twitter');
 var utils = require('./Utils');
+var config = require('./Config');
 
 // On déclare l'instance du bot avec les logins situés dans le fichier config
 var T = new Twit(login);
-
-
-
-
-// Messages d'erreur :
-error = "\n\n⚠️ Une erreur est survenue lors de l'envoi de votre bulletin météo !\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
-errorNoLoc = "\n\n⚠️ Une erreur est survenue lors de l'envoi de votre bulletin météo !\n⚠️ Vous n'avez pas défini de localisation sur votre page de profil !\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
-errorInvalidLoc = "\n\n⚠️ Une erreur est survenue lors de l'envoi de votre bulletin météo !\n⚠️ Veuillez indiquer une localisation valide !\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
-
-
-
 
 
 
@@ -31,12 +21,13 @@ errorInvalidLoc = "\n\n⚠️ Une erreur est survenue lors de l'envoi de votre b
 main();
 
 
+
 // Fonction principale :
 function main() {
 
   // Screen_name du bot :
   var id = {
-    user_id: "Tweether01"
+    user_id: config.getAccountName()
   }
 
 
@@ -100,8 +91,8 @@ function whatsTheWeatherIn(location, user) {
 
 
         // Envoie d'un tweet d'erreur ciblé :
-        console.log("@" + user + errorInvalidLoc + "\n\n\n");
-        twitter.sendTweet("@" + user + errorInvalidLoc);
+        console.log("@" + user + config.getErrorInvalidLoc() + "\n\n\n");
+        twitter.sendTweet("@" + user + config.getErrorInvalidLoc());
 
 
         // Les donneés ont bien été reçues :
@@ -152,8 +143,8 @@ function whatsTheWeatherIn(location, user) {
         } else {
 
           // Envoie d'un tweet d'erreur :
-          console.log("@" + user + error + "\n\n\n");
-          twitter.sendTweet("@" + user + error);
+          console.log("@" + user + config.getError() + "\n\n\n");
+          twitter.sendTweet("@" + user + config.getError());
 
         }
 
@@ -168,7 +159,7 @@ function whatsTheWeatherIn(location, user) {
   } else {
 
     // Envoie message d'erreur : activer localisation
-    twitter.sendTweet("@" + user + errorNoLoc);
+    twitter.sendTweet("@" + user + config.getErrorNoLoc());
 
   }
 
