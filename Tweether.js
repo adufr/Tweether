@@ -1,7 +1,3 @@
-// DEBUG : Permet de voir quand le bot démarre
-console.log("Tweether 1.0-1 is starting... \n\n");
-
-
 // On vérifie que les packages sont bien installés :
 var Twit = require('twit');
 var getJSON = require('get-json')
@@ -12,13 +8,20 @@ var twitter = require('./Twitter');
 var utils = require('./Utils');
 var config = require('./Config');
 
+
+// DEBUG : Permet de voir quand le bot démarre
+console.log("============================\nTweether " + config.getVersion() + " is starting...\n============================\n\n\n");
+
+
 // On déclare l'instance du bot avec les logins situés dans le fichier config
 var T = new Twit(login);
 
 
 
+
 // Lancement du script
 main();
+
 
 
 
