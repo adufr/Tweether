@@ -87,7 +87,7 @@ function whatsTheWeatherIn(location, user) {
 
 
     // Chargement du lien :
-    getJSON('http://api.openweathermap.org/data/2.5/forecast?q=' + city + ',' + country + '&units=metric&APPID=8445323e2d375eef7e097a6617b4af68', function(miss, response){
+    getJSON('http://api.openweathermap.org/data/2.5/weather?q=' + city + ',' + country + '&units=metric&APPID=8445323e2d375eef7e097a6617b4af68', function(miss, response){
 
       // On vérifire que l'on reçoit bien les données :
       if (miss != null) {
@@ -110,21 +110,21 @@ function whatsTheWeatherIn(location, user) {
 
         // Construction du message :
         meteoTime = utils.getHour();
-        meteoCity = response.city.name;
-        meteoCurrTemp = response.list[0].main.temp;
-        meteoMinTemp = response.list[0].main.temp_min;
-        meteoMaxTemp = response.list[0].main.temp_max;
-        meteoClouds = response.list[0].clouds.all;
-        meteoHumidity = response.list[0].main.humidity;
-        meteoWindSpeed = response.list[0].wind.speed;
+        meteoCity = response.sys.name;
+        meteoCurrTemp = response.main.temp;
+        meteoMinTemp = response.main.temp_min;
+        meteoMaxTemp = response.main.temp_max;
+        meteoClouds = response.clouds.all;
+        meteoHumidity = response.main.humidity;
+        meteoWindSpeed = response.wind.speed;
 
 
         // Traduction de la description :
         // + récupération de l'icône :
-        weather.translateDesc(response.list[0].weather[0].description);
+        weather.translateDesc(response.weather[0].description);
 
         // Traduction de l'angle de provenance du vent en di  rection :
-        weather.getWindDir(response.list[0].wind.deg);
+        weather.getWindDir(response.wind.deg);
 
 
         // Construction du message :
