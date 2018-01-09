@@ -133,7 +133,7 @@ function whatsTheWeatherIn(location, user) {
               + "🌡️ Min : " + Math.round(meteoMinTemp) + "°C - Max : " + Math.round(meteoMaxTemp) + "°C\n"
               + "☁️ Couvert à : " + meteoClouds + "%\n"
               + "💧 Humidité : " + meteoHumidity + "%\n"
-              + "🌪️ " + meteoWindSpeed + " km/h - " + meteoWindDir + "\n\n"
+              + "🌪️ " + meteoWindSpeed + " m/s - " + meteoWindDir + "\n\n"
               + weather.getMessage(meteoClouds, meteoCurrTemp) + " (" + config.getVersion() + ")";
 
 
