@@ -128,7 +128,7 @@ function whatsTheWeatherIn(location, user) {
 
 
         // Construction du message :
-        meteo = "@" + user + "\n\n️" + meteoIcon + " Météo, " + meteoTime + " à " + meteoCity + " : " + meteoDesc + "\n\n"
+        meteo = "@" + user + "\n\n️" + meteoIcon + " " + meteoCity + " : " + meteoDesc + " (" + meteoTime + ")\n\n"
               + "🌡️ Actuellement : " + Math.round(meteoCurrTemp) + "°C\n"
               + "🌡️ Min : " + Math.round(meteoMinTemp) + "°C - Max : " + Math.round(meteoMaxTemp) + "°C\n"
               + "☁️ Couvert à : " + meteoClouds + "%\n"
