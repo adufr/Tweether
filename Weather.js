@@ -365,3 +365,29 @@ var getWindDir = function (angle) {
 
 // On rend la fonction visible pour les autres fichiers :
 exports.getWindDir = getWindDir;
+
+
+
+
+
+// Message de fin :
+var getMessage = function(meteoClouds, meteoCurrTemp) {
+
+  // ~ Temporaire ~
+  if (meteoCurrTemp > 30) {
+    return "Il fait chaud : pensez à bien vous hydrater !";
+  } else
+
+  if ((meteoCurrTemp < 3) && (meteoCurrTemp > -2)) {
+    return "Attention : risque de verglas !";
+  } else {
+    return "Rien de particulier !"
+  }
+
+
+
+
+}
+
+// On rend la fonction visible pour les autres fichiers :
+exports.getMessage = getMessage;

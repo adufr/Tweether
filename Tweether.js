@@ -123,7 +123,7 @@ function whatsTheWeatherIn(location, user) {
         // + récupération de l'icône :
         weather.translateDesc(response.list[0].weather[0].description);
 
-        // Traduction de l'angle de provenance du vent en direction :
+        // Traduction de l'angle de provenance du vent en di  rection :
         weather.getWindDir(response.list[0].wind.deg);
 
 
@@ -133,7 +133,8 @@ function whatsTheWeatherIn(location, user) {
               + "🌡️ Min : " + Math.round(meteoMinTemp) + "°C - Max : " + Math.round(meteoMaxTemp) + "°C\n"
               + "☁️ Couvert à : " + meteoClouds + "%\n"
               + "💧 Humidité : " + meteoHumidity + "%\n"
-              + "🌪️ " + meteoWindSpeed + " km/h - " + meteoWindDir;
+              + "🌪️ " + meteoWindSpeed + " km/h - " + meteoWindDir + "\n\n"
+              + weather.getMessage(meteoClouds, meteoCurrTemp) + " (" + config.getVersion() + ")";
 
 
         // Si il n'y a pas d'erreur :
