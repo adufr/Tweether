@@ -111,6 +111,7 @@ function whatsTheWeatherIn(location, user) {
         // Construction du message :
         meteoTime = utils.getHour();
         meteoCity = response.sys.name;
+        meteoCountry = response.sys.country;
         meteoCurrTemp = response.main.temp;
         meteoMinTemp = response.main.temp_min;
         meteoMaxTemp = response.main.temp_max;
@@ -128,7 +129,7 @@ function whatsTheWeatherIn(location, user) {
 
 
         // Construction du message :
-        meteo = "@" + user + "\n\n️" + meteoIcon + " " + meteoCity + " : " + meteoDesc + " (" + meteoTime + ")\n\n"
+        meteo = "@" + user + "\n\n️" + meteoIcon + " " + meteoCity + " (" + meteoCountry + ") : " + meteoDesc + " (" + meteoTime + ")\n\n"
               + "🌡️ Actuellement : " + Math.round(meteoCurrTemp) + "°C\n"
               + "🌡️ Min : " + Math.round(meteoMinTemp) + "°C - Max : " + Math.round(meteoMaxTemp) + "°C\n"
               + "☁️ Couvert à : " + meteoClouds + "%\n"
