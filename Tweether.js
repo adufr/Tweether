@@ -101,13 +101,6 @@ function whatsTheWeatherIn(location, user) {
         // Les donneés ont bien été reçues :
       } else {
 
-        // Fonction servant au calcul de l'heure actuelle :
-        function addZero(i) {
-            if (i < 10) {
-                i = "0" + i;
-            } return i;
-        }
-
         // Construction du message :
         meteoTime = utils.getHour();
         meteoCity = response.name;
