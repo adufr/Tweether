@@ -110,7 +110,7 @@ function whatsTheWeatherIn(location, user) {
 
         // Construction du message :
         meteoTime = utils.getHour();
-        meteoCity = response.sys.name;
+        meteoCity = response.name;
         meteoCountry = response.sys.country;
         meteoCurrTemp = response.main.temp;
         meteoMinTemp = response.main.temp_min;
