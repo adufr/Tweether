@@ -7,7 +7,7 @@ var errorNoLoc = "\n\n⚠️ Une erreur est survenue lors de l'envoi de votre bu
 var errorInvalidLoc = "\n\n⚠️ Une erreur est survenue lors de l'envoi de votre bulletin météo !\n⚠️ Veuillez indiquer une localisation valide !\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
 
 // Changelog :
-var version = "v0.5-4";
+var version = "v0.5-5";
 var changelog = "📢🆕 Tweether passe en version " + version + " !\n\n📝 Changelog :\n🔘 Ajout système de changelog\n🔘 Icône dynamique pour la météo\n🔘 La température est désormais arrondie\n🔘 Optimisation du code\n\n⚠️ Si vous rencontrez un bug : contactez Woosy__ !\n📝 https://github.com/Woosy/Tweether/issues/new";
     // Ajout        ->   🔘
     // Modification ->   🔘
