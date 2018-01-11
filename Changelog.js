@@ -11,6 +11,7 @@ var Twit = require('twit');
 var login = require('./Login');
 var twitter = require('./Twitter');
 var version = require('./Version');
+var logs = require('./Logs');
 
 
 // LOG : Démarrage du script :
@@ -43,4 +44,4 @@ var T = new Twit(login);
 // Envoie du changelog :
 twitter.sendTweet(version.getChangelog());
 // LOG : Envoi du tweet :
-console.log(version.getChangelog());
+logs.logTweet(version.getChangelog());

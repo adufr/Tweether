@@ -15,6 +15,7 @@ var twitter = require('./Twitter');
 var utils = require('./Utils');
 var config = require('./Config');
 var version = require('./Version');
+var logs = require('./Logs');
 
 
 // LOG : Démarrage du script :
@@ -94,7 +95,7 @@ function main() {
           // Envoie message d'erreur : activer localisation
           twitter.sendTweet("@" + data.users[i].screen_name + config.getErrorNoLoc());
           // LOG : Tweet d'erreur :
-          console.log("@" + data.users[i].screen_name + config.getErrorNoLoc());
+          logs.logTweet("@" + data.users[i].screen_name + config.getErrorNoLoc());
 
         }
 
@@ -137,7 +138,7 @@ function whatsTheWeatherIn(location, user) {
     // ====================================================
 
     // Vérification réception des données :
-    if (miss = null) {
+    if (miss == null) {
 
       // Construction du tweet :
       meteoTime = utils.getHour();
@@ -176,14 +177,14 @@ function whatsTheWeatherIn(location, user) {
         // Envoie du Tweet :
         twitter.sendTweet(meteo);
         // LOG : Envoie du tweet :
-        console.log(meteo + "\n\n\n");
+        logs.logTweet(meteo);
 
       } else {
 
         // Envoie d'un tweet d'erreur :
         twitter.sendTweet("@" + user + config.getError());
         // LOG : Tweet d'erreur :
-        console.log("@" + user + config.getError() + "\n\n\n");
+        logs.logTweet("@" + user + config.getError());
 
       }
 
@@ -198,7 +199,7 @@ function whatsTheWeatherIn(location, user) {
       // Envoie d'un tweet d'erreur ciblé :
       twitter.sendTweet("@" + user + config.getErrorInvalidLoc());
       // LOG : Tweet d'erreur :
-      console.log("@" + user + config.getErrorInvalidLoc() + "\n\n\n");
+      logs.logTweet("@" + user + config.getErrorInvalidLoc());
 
     }
 
