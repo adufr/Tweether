@@ -9,6 +9,7 @@
 var Twit = require('twit');
 // Autres fichiers :
 var login = require('./Login');
+var logs = require('./Logs');
 
 
 // Création instance bot avec les tokens situés dans le fichier login :
@@ -52,10 +53,10 @@ var sendTweet = function (message) {
     function posted(err, data, response) {
       if (err) {
         // LOG : Erreur lors de l'envoi du tweet :
-        console.log("Le tweet n'a pas été posté : " + err + "\n\n============================\n\n");
+        logs.logError("Erreur : le tweet n'a pas été posté : " + err);
       } else {
         // LOG: Tweet envoyé avec succès
-        console.log("Le tweet a bien été posté !");
+        logs.logError("Succès : le tweet a bien été posté !");
       }
     }
 

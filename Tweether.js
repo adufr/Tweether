@@ -19,7 +19,7 @@ var logs = require('./Logs');
 
 
 // LOG : Démarrage du script :
-console.log("============================\nTweether " + version.getVersion() + " is starting...\n============================\n\n\n");
+logs.logStatus("============================\nTweether " + version.getVersion() + " is starting...\n============================\n\n\n");
 
 
 // Création instance bot avec les tokens situés dans le fichier login :
@@ -72,7 +72,7 @@ function main() {
 
     // LOG : Vérification erreur sur la requête GET (Twitter's API) :
     if (err) {
-      console.log("ERREUR : Get followers list : " + err);
+      logs.logError("Erreur (Twitter) récupération liste des followers : " + err);
 
       // Pas d'erreur :
     } else {
@@ -90,7 +90,7 @@ function main() {
         } else {
 
           // LOG : Location non-définie pour @username :
-          console.log("Pas de location définie pour : " + data.users[i].screen_name + "\n\n\n");
+          logs.logError("Erreur : pas de location définie pour : " + data.users[i].screen_name);
 
           // Envoie message d'erreur : activer localisation
           twitter.sendTweet("@" + data.users[i].screen_name + config.getErrorNoLoc());

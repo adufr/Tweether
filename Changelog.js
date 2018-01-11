@@ -15,7 +15,7 @@ var logs = require('./Logs');
 
 
 // LOG : Démarrage du script :
-console.log("============================\nTweether " + version.getVersion() + " is starting...\n============================\n\n\n");
+logs.logStatus("============================\nTweether " + version.getVersion() + " is starting...\n============================\n\n\n");
 
 
 
