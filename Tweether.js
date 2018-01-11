@@ -7,6 +7,7 @@ var weather = require('./Weather');
 var twitter = require('./Twitter');
 var utils = require('./Utils');
 var config = require('./Config');
+var version = require('./Version');
 
 
 // DEBUG : Permet de voir quand le bot démarre
@@ -128,7 +129,7 @@ function whatsTheWeatherIn(location, user) {
               + "☁️ Couvert à : " + meteoClouds + "%\n"
               + "💧 Humidité : " + meteoHumidity + "%\n"
               + "🌪️ " + meteoWindSpeed + " m/s - " + meteoWindDir + "\n\n"
-              + weather.getMessage(meteoClouds, meteoCurrTemp) + " (" + config.getVersion() + ")";
+              + weather.getMessage(meteoClouds, meteoCurrTemp) + " (" + version.getVersion() + ")";
 
 
         // Si il n'y a pas d'erreur :
