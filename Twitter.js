@@ -9,9 +9,9 @@ var sendTweet = function (message) {
 
 
   // Vérification de la longueur du Tweet (avant d'essayer de l'envoyer) :
-  if (message.length > 240) {
+  if (message.length > 280) {
 
-    console.log("\n\nERREUR : Le tweet dépasse 240 caractères !\nEnvoi annulé\n\n\n");
+    console.log("\n\nERREUR : Le tweet dépasse 280 caractères !\n==========================================\n\n\n\n");
 
   } else {
 
