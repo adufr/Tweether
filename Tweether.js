@@ -1,7 +1,14 @@
-// On vérifie que les packages sont bien installés :
+// ====================================================
+// ====================================================
+// == Initialisation :  ===============================
+// ====================================================
+// ====================================================
+
+
+// Packages :
 var Twit = require('twit');
 var getJSON = require('get-json')
-// On vérifie tout les fichiers de codes sont bien présents :
+// Autres fichiers :
 var login = require('./Login');
 var weather = require('./Weather');
 var twitter = require('./Twitter');
@@ -10,36 +17,59 @@ var config = require('./Config');
 var version = require('./Version');
 
 
-// DEBUG : Permet de voir quand le bot démarre
+// LOG : Démarrage du script :
 console.log("============================\nTweether " + version.getVersion() + " is starting...\n============================\n\n\n");
 
 
-// On déclare l'instance du bot avec les logins situés dans le fichier config
+// Création instance bot avec les tokens situés dans le fichier login :
+//
+//  module.exports = {
+//    consumer_key:         'replace_by_consumer_key',
+//    consumer_secret:      'replace_by_consumer_secret',
+//    access_token:         'replace_by_access_token',
+//    access_token_secret:  'replace_by_token_secret',
+//    timeout_ms:           60*1000, // Optional
+//  }
+//
+
 var T = new Twit(login);
 
 
 
 
-// Lancement du script
+// Lancement du script :
 main();
 
 
 
 
+
+
+
+// ====================================================
+// ====================================================
+// == Récupération des followers :  ===================
+// ====================================================
+// ====================================================
+
+
 // Fonction principale :
 function main() {
 
-  // Screen_name du bot :
+  // Nom (@username) du bot :
   var id = {
     user_id: config.getAccountName()
   }
 
 
-  // Listing des followers du bot :
+  // Récupération de la liste des followers du bot :
   T.get('followers/list', id, gotData);
 
+
+  // Traitement des données :
   function gotData(err, data, response) {
-    // DEBUG : Vérification erreur sur la requête GET :
+
+    // LOG : Vérification erreur sur la requête GET (Twitter's API) :
     if (err) {
       console.log("ERREUR : Get followers list : " + err);
 
@@ -55,12 +85,16 @@ function main() {
           // On transmet location & screen_name :
           whatsTheWeatherIn(data.users[i].location, data.users[i].screen_name);
 
-          // Si la location n'est pas définie :
+          // Location non définie :
         } else {
 
-          // DEBUG :
+          // LOG : Location non-définie pour @username :
           console.log("Pas de location définie pour : " + data.users[i].screen_name + "\n\n\n");
-          whatsTheWeatherIn("noloc", data.users[i].screen_name);
+
+          // Envoie message d'erreur : activer localisation
+          twitter.sendTweet("@" + data.users[i].screen_name + config.getErrorNoLoc());
+          // LOG : Tweet d'erreur :
+          console.log("@" + data.users[i].screen_name + config.getErrorNoLoc());
 
         }
 
@@ -72,96 +106,104 @@ function main() {
 }
 
 
+
+
+
+
+
+// ====================================================
+// ====================================================
+// == Récupération de la météo :  =====================
+// ====================================================
+// ====================================================
+
+
 // Récupération de la météo :
 function whatsTheWeatherIn(location, user) {
 
 
-  // Si la localisation est bien mise en place :
-  if (location != "noloc") {
+  // Traitement "location" & transformation en ville + pays :
+  var temp = location.split(", ");
+  var city = temp[0];
+  var country = temp[1];
 
 
-    // Traitement "location" & transformation en ville + pays :
-    var temp = location.split(", ");
-    var city = temp[0];
-    var country = temp[1];
+  // Récupération données météo (OpenWeatherMap's API) :
+  getJSON('http://api.openweathermap.org/data/2.5/weather?q=' + city + ',' + country + '&units=metric&APPID=8445323e2d375eef7e097a6617b4af68', function(miss, response){
+
+
+    // ====================================================
+    // == Préparation envoie de la météo :  ===============
+    // ====================================================
+
+    // Vérification réception des données :
+    if (miss = null) {
+
+      // Construction du tweet :
+      meteoTime = utils.getHour();
+      meteoCity = response.name;
+      meteoCountry = response.sys.country;
+      meteoCurrTemp = response.main.temp;
+      meteoMinTemp = response.main.temp_min;
+      meteoMaxTemp = response.main.temp_max;
+      meteoClouds = response.clouds.all;
+      meteoHumidity = response.main.humidity;
+      meteoWindSpeed = response.wind.speed;
+
+
+      // Traduction de la description :
+      // + récupération de l'icône :
+      weather.translateDesc(response.weather[0].description);
+
+      // Traduction de l'angle de provenance du vent en direction :
+      weather.getWindDir(response.wind.deg);
+
+
+      // Assemblage du tweet :
+      meteo = "@" + user + "\n\n️" + meteoIcon + " " + meteoCity + " (" + meteoCountry + ") : " + meteoDesc + " (" + meteoTime + ")\n\n"
+            + "🌡️ Actuellement : " + Math.round(meteoCurrTemp) + "°C\n"
+            + "🌡️ Min : " + Math.round(meteoMinTemp) + "°C - Max : " + Math.round(meteoMaxTemp) + "°C\n"
+            + "☁️ Couvert à : " + meteoClouds + "%\n"
+            + "💧 Humidité : " + meteoHumidity + "%\n"
+            + "🌪️ " + meteoWindSpeed + " m/s - " + meteoWindDir + "\n\n"
+            + weather.getMessage(meteoClouds, meteoCurrTemp) + " (" + version.getVersion() + ")";
 
 
 
-    // Chargement du lien :
-    getJSON('http://api.openweathermap.org/data/2.5/weather?q=' + city + ',' + country + '&units=metric&APPID=8445323e2d375eef7e097a6617b4af68', function(miss, response){
+      // Si le tweet ne contient pas "ERREUR" :
+      if (meteo.indexOf("ERREUR") == -1) {
 
-      // On vérifire que l'on reçoit bien les données :
-      if (miss != null) {
+        // Envoie du Tweet :
+        twitter.sendTweet(meteo);
+        // LOG : Envoie du tweet :
+        console.log(meteo + "\n\n\n");
 
-
-        // Envoie d'un tweet d'erreur ciblé :
-        console.log("@" + user + config.getErrorInvalidLoc() + "\n\n\n");
-        twitter.sendTweet("@" + user + config.getErrorInvalidLoc());
-
-
-        // Les donneés ont bien été reçues :
       } else {
 
-        // Construction du message :
-        meteoTime = utils.getHour();
-        meteoCity = response.name;
-        meteoCountry = response.sys.country;
-        meteoCurrTemp = response.main.temp;
-        meteoMinTemp = response.main.temp_min;
-        meteoMaxTemp = response.main.temp_max;
-        meteoClouds = response.clouds.all;
-        meteoHumidity = response.main.humidity;
-        meteoWindSpeed = response.wind.speed;
-
-
-        // Traduction de la description :
-        // + récupération de l'icône :
-        weather.translateDesc(response.weather[0].description);
-
-        // Traduction de l'angle de provenance du vent en di  rection :
-        weather.getWindDir(response.wind.deg);
-
-
-        // Construction du message :
-        meteo = "@" + user + "\n\n️" + meteoIcon + " " + meteoCity + " (" + meteoCountry + ") : " + meteoDesc + " (" + meteoTime + ")\n\n"
-              + "🌡️ Actuellement : " + Math.round(meteoCurrTemp) + "°C\n"
-              + "🌡️ Min : " + Math.round(meteoMinTemp) + "°C - Max : " + Math.round(meteoMaxTemp) + "°C\n"
-              + "☁️ Couvert à : " + meteoClouds + "%\n"
-              + "💧 Humidité : " + meteoHumidity + "%\n"
-              + "🌪️ " + meteoWindSpeed + " m/s - " + meteoWindDir + "\n\n"
-              + weather.getMessage(meteoClouds, meteoCurrTemp) + " (" + version.getVersion() + ")";
-
-
-        // Si il n'y a pas d'erreur :
-        if (meteo.indexOf("ERREUR") == -1) {
-
-          // Envoie du Tweet :
-          console.log(meteo + "\n\n\n");
-          twitter.sendTweet(meteo);
-
-          // Si le tweet contient une erreur :
-        } else {
-
-          // Envoie d'un tweet d'erreur :
-          console.log("@" + user + config.getError() + "\n\n\n");
-          twitter.sendTweet("@" + user + config.getError());
-
-        }
+        // Envoie d'un tweet d'erreur :
+        twitter.sendTweet("@" + user + config.getError());
+        // LOG : Tweet d'erreur :
+        console.log("@" + user + config.getError() + "\n\n\n");
 
       }
 
 
-    })
+
+      // ====================================================
+      // == Donnés météo non reçues :  ======================
+      // ====================================================
+
+    } else {
+
+      // Envoie d'un tweet d'erreur ciblé :
+      twitter.sendTweet("@" + user + config.getErrorInvalidLoc());
+      // LOG : Tweet d'erreur :
+      console.log("@" + user + config.getErrorInvalidLoc() + "\n\n\n");
+
+    }
 
 
-
-    // Si la localisation n'est pas activée :
-  } else {
-
-    // Envoie message d'erreur : activer localisation
-    twitter.sendTweet("@" + user + config.getErrorNoLoc());
-
-  }
+  })
 
 
 }

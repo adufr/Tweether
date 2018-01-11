@@ -1,24 +1,46 @@
-// On vérifie que les packages sont bien installés :
+// ====================================================
+// ====================================================
+// == Initialisation :  ===============================
+// ====================================================
+// ====================================================
+
+
+// Packages :
 var Twit = require('twit');
-var getJSON = require('get-json')
-// On vérifie tout les fichiers de codes sont bien présents :
+// Autres fichiers :
 var login = require('./Login');
-var weather = require('./Weather');
 var twitter = require('./Twitter');
-var utils = require('./Utils');
-var config = require('./Config');
 var version = require('./Version');
 
 
-// DEBUG : Permet de voir quand le bot démarre
-console.log("============================\nTweether " + version.getVersion() + " is starting...\n============================\n");
+// LOG : Démarrage du script :
+console.log("============================\nTweether " + version.getVersion() + " is starting...\n============================\n\n\n");
 
 
-// On déclare l'instance du bot avec les logins situés dans le fichier config
+
+
+// ====================================================
+// ====================================================
+// == Envoie du changelog :  ==========================
+// ====================================================
+// ====================================================
+
+
+// Création instance bot avec les tokens situés dans le fichier login :
+//
+//  module.exports = {
+//    consumer_key:         'replace_by_consumer_key',
+//    consumer_secret:      'replace_by_consumer_secret',
+//    access_token:         'replace_by_access_token',
+//    access_token_secret:  'replace_by_token_secret',
+//    timeout_ms:           60*1000, // Optional
+//  }
+//
+
 var T = new Twit(login);
 
 
-
-// On envoie le changelog :
+// Envoie du changelog :
 twitter.sendTweet(version.getChangelog());
+// LOG : Envoi du tweet :
 console.log(version.getChangelog());

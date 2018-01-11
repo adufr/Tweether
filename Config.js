@@ -1,3 +1,10 @@
+// ====================================================
+// ====================================================
+// == Configuration :  ================================
+// ====================================================
+// ====================================================
+
+
 // Nom du compte :
 var accountName = "Tweether01";
 
@@ -9,7 +16,14 @@ var errorInvalidLoc = "\n\n⚠️ Une erreur est survenue lors de l'envoi de vot
 
 
 
-// On créer les methodes pour récupérer les variables
+
+// ====================================================
+// ====================================================
+// == "Exportation" :  ================================
+// ====================================================
+// ====================================================
+
+// Méthodes pour récupérer les variables :
 var getAccountName = function() {
   return accountName;
 }
@@ -27,10 +41,7 @@ var getErrorInvalidLoc = function() {
 }
 
 
-
-
-
-// On rend les fonctions visibles pour les autres fichiers :
+// On rend les méthodes accessibles :
 exports.getAccountName = getAccountName;
 exports.getError = getError;
 exports.getErrorNoLoc = getErrorNoLoc;

@@ -1,6 +1,12 @@
-// Récupère l'heure actuelle (format hh:mm) :
+// ====================================================
+// ====================================================
+// == Heure actuelle (au format hh:mm)  ===============
+// ====================================================
+// ====================================================
+
 var getHour = function () {
 
+  // Permet d'afficher 09h09 au lieu de 9h9 :
   function addZero(i) {
     if (i < 10) {
         i = "0" + i;
@@ -11,5 +17,6 @@ var getHour = function () {
   return addZero(time.getHours()) + "h" + addZero(time.getMinutes());
 }
 
-// On rend la fonction visible pour les autres fichiers :
+
+// On rend les méthodes accessibles :
 exports.getHour = getHour;

@@ -1,4 +1,10 @@
-// Traduction de la "description" vers le français :
+// ====================================================
+// ====================================================
+// == Traduction & Récupération de l'icône :  =========
+// ====================================================
+// ====================================================
+
+
 var translateDesc = function (description) {
 
   switch (description) {
@@ -330,13 +336,18 @@ var translateDesc = function (description) {
 
 }
 
-// On rend la fonction visible pour les autres fichiers :
+// On rend la méthode accessible :
 exports.translateDesc = translateDesc;
 
 
 
+// ====================================================
+// ====================================================
+// == Traduction de l'angle en message avec emoji :  ==
+// ====================================================
+// ====================================================
 
-// Traduction de l'angle en chaîne de caractère avec emoticone :
+
 var getWindDir = function (angle) {
 
   if ((angle >= 0) && (angle < 22.5)) {
@@ -363,14 +374,19 @@ var getWindDir = function (angle) {
 
 }
 
-// On rend la fonction visible pour les autres fichiers :
+// On rend la méthode accessible :
 exports.getWindDir = getWindDir;
 
 
 
 
+// ====================================================
+// ====================================================
+// == Message de fin (dépendant de divers paramètres ==
+// ====================================================
+// ====================================================
 
-// Message de fin :
+
 var getMessage = function(meteoClouds, meteoCurrTemp) {
 
   // ~ Temporaire ~
@@ -384,10 +400,7 @@ var getMessage = function(meteoClouds, meteoCurrTemp) {
     return "Rien de particulier !"
   }
 
-
-
-
 }
 
-// On rend la fonction visible pour les autres fichiers :
+// On rend la méthode accessible :
 exports.getMessage = getMessage;
