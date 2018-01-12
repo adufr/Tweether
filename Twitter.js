@@ -39,7 +39,7 @@ var sendTweet = function (message) {
 
   // Vérification longueur :
   // (uniquement utile pour l'envoi manuel du changelog)
-  if (message.length <= 280) {
+  if (message.length <= 300) {
 
 
     // Envoi du tweet via Twit
@@ -55,8 +55,7 @@ var sendTweet = function (message) {
         // LOG : Erreur lors de l'envoi du tweet :
         logs.logError("Erreur : le tweet n'a pas été posté : " + err);
       } else {
-        // LOG: Tweet envoyé avec succès
-        logs.logError("Succès : le tweet a bien été posté !");
+        // (TWEET ENVOYÉ -> PAS DE LOG)
       }
     }
 

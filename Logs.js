@@ -14,8 +14,9 @@ var tweetsPath = "/home/arthur/Tweether/logs/tweets.txt";
 var errorsPath = "/home/arthur/Tweether/logs/errors.txt";
 var statusPath = "/home/arthur/Tweether/logs/status.txt";
 
-var timestamp = "======================================\n" +
-                "====> " + utils.getTodaysDate() + "  A  " + utils.getHour() + " <=====================\n";
+var timestamp = "=================================================\n" +
+                "====> " + utils.getTodaysDate() + "  A  " + utils.getHour() + " <=====================\n" +
+                "=================================================\n";
 
 
 
