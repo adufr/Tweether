@@ -28,6 +28,33 @@ exports.getHour = getHour;
 
 // ====================================================
 // ====================================================
+// == Heure actuelle (au format hh:mm:ss)  ===============
+// ====================================================
+// ====================================================
+
+var getHourWithSeconds = function () {
+
+  // Permet d'afficher 09h09:09 au lieu de 9h9:9 :
+  function addZero(i) {
+    if (i < 10) {
+        i = "0" + i;
+    } return i;
+  }
+
+  time = new Date();
+  return addZero(time.getHours()) + "h" + addZero(time.getMinutes() + ":" + addZero(time.getSeconds()));
+}
+
+
+// On rend les méthodes accessibles :
+exports.getHourWithSeconds = getHourWithSeconds;
+
+
+
+
+
+// ====================================================
+// ====================================================
 // == Date atuelle (au format jj/mm/aa)  ==============
 // ====================================================
 // ====================================================
