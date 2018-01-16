@@ -124,9 +124,19 @@ function whatsTheWeatherIn(location, user) {
 
 
   // Traitement "location" & transformation en ville + pays :
-  var temp = location.split(", ");
-  var city = temp[0];
-  var country = temp[1];
+  // Vérification : pays set ou non
+  if (str.indexOf(', ') == -1) {
+
+    // Envoie d'un tweet d'erreur ciblé :
+    twitter.sendTweet("@" + user + config.getErrorNoCountry());
+    // LOG : Tweet d'erreur :
+    logs.logTweet("@" + user + config.getErrorNoCountry());
+
+  } else {
+    var temp = location.split(", ");
+    var city = temp[0];
+    var country = temp[1];
+  }
 
 
   // Récupération données météo (OpenWeatherMap's API) :
