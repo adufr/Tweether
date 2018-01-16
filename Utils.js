@@ -75,3 +75,58 @@ var getTodaysDate = function () {
 
 // On rend les méthodes accessibles :
 exports.getTodaysDate = getTodaysDate;
+
+
+
+
+
+// ====================================================
+// ====================================================
+// == Traduction du pays ==============================
+// ====================================================
+// ====================================================
+
+var tradPays = function (country) {
+
+  switch (country) {
+    // FRANCE
+    case "France":
+      country = "FR";
+      break;
+
+    // BELGIQUE
+    case "Belgique":
+      country = "BE";
+      break;
+    case "Belgium":
+      country = "BE";
+      break;
+
+    // CANADA & QUÉBEC
+    case "Canada":
+      country = "CA";
+      break;
+    case "Quebec":
+      country = "CA";
+      break;
+    case "Québec":
+      country = "CA";
+      break;
+
+    // SUISSE
+    case "Suisse":
+      country = "CH";
+      break;
+    case "Switzerland":
+      country = "CH";
+      break;
+
+    default:
+      country = country;
+  }
+
+  return country;
+}
+
+// On rend la méthode accessible :
+exports.tradPays = tradPays;
