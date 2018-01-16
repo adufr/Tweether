@@ -136,6 +136,43 @@ function whatsTheWeatherIn(location, user) {
     var temp = location.split(", ");
     var city = temp[0];
     var country = temp[1];
+
+    switch (country) {
+      // FRANCE
+      case "France":
+        country = "FR";
+        break;
+
+      // BELGIQUE
+      case "Belgique":
+        country = "BE";
+        break;
+      case "Belgium":
+        country = "BE";
+        break;
+
+      // CANADA & QUÉBEC
+      case "Canada":
+        country = "CA";
+        break;
+      case "Quebec":
+        country = "CA";
+        break;
+      case "Québec":
+        country = "CA";
+        break;
+
+      // SUISSE
+      case "Suisse":
+        country = "CH";
+        break;
+      case "Switzerland":
+        country = "CH";
+        break;
+
+      default:
+        country = country;
+    }
   }
 
 
