@@ -11,8 +11,8 @@ var accountName = "Tweether01";
 // Messages d'erreur :
 var error = "\n\n⚠️ Une erreur est survenue lors de l'envoi de votre bulletin météo !\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
 var errorNoLoc = "\n\n⚠️ Une erreur est survenue lors de l'envoi de votre bulletin météo !\n⚠️ Vous n'avez pas défini de localisation sur votre page de profil !\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
+var errorNoCountry = "\n\n⚠️ Une erreur est survenue lors de l'envoi de votre bulletin météo !\n⚠️ Veuillez indiquer votre pays !\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
 var errorInvalidLoc = "\n\n⚠️ Une erreur est survenue lors de l'envoi de votre bulletin météo !\n⚠️ Veuillez indiquer une localisation valide !\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
-
 
 
 
@@ -36,6 +36,10 @@ var getErrorNoLoc = function() {
   return errorNoLoc;
 }
 
+var getErrorNoCountry = function() {
+  return errorNoCountry;
+}
+
 var getErrorInvalidLoc = function() {
   return errorInvalidLoc;
 }
@@ -45,4 +49,5 @@ var getErrorInvalidLoc = function() {
 exports.getAccountName = getAccountName;
 exports.getError = getError;
 exports.getErrorNoLoc = getErrorNoLoc;
+exports.getErrorNoCountry = getErrorNoCountry;
 exports.getErrorInvalidLoc = getErrorInvalidLoc;
