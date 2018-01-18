@@ -135,10 +135,6 @@ function whatsTheWeatherIn(location, user) {
 
     var city = location;
     var country = "";
-    // Envoie d'un tweet d'erreur ciblé :
-    // twitter.sendTweet("@" + user + config.getErrorNoCountry());
-    // LOG : Tweet d'erreur :
-    // logs.logTweet("@" + user + config.getErrorNoCountry());
 
   } else {
     var temp = location.split(", ");
