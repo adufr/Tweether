@@ -18,9 +18,6 @@ var version = require('./Version');
 var logs = require('./Logs');
 
 
-// LOG : Démarrage du script :
-logs.logStatus("============================\nTweether " + version.getVersion() + " is starting...\n============================\n\n\n");
-
 
 // Création instance bot avec les tokens situés dans le fichier login :
 //
@@ -46,6 +43,7 @@ var T = new Twit(login);
 
 // Vérification état du programme
 if (config.getState() == "on") {
+  logs.logStatus("============================\nTweether " + version.getVersion() + " is starting...\n============================\n\n\n");
   main();
 } else {
   logs.logStatus("\nTWEETHER S'EST ARRÊTÉ : OFF\n");
