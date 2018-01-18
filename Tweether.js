@@ -131,24 +131,24 @@ function whatsTheWeatherIn(location, user) {
 
   // Traitement "location" & transformation en ville + pays :
   // Vérification : pays set ou non
-  if (str.indexOf(', ') == -1) {
+  if (location.indexOf(",") == -1) {
 
+    var city = location;
+    var country = "";
     // Envoie d'un tweet d'erreur ciblé :
-    twitter.sendTweet("@" + user + config.getErrorNoCountry());
+    // twitter.sendTweet("@" + user + config.getErrorNoCountry());
     // LOG : Tweet d'erreur :
-    logs.logTweet("@" + user + config.getErrorNoCountry());
+    // logs.logTweet("@" + user + config.getErrorNoCountry());
 
   } else {
     var temp = location.split(", ");
     var city = temp[0];
     var country = temp[1];
-
-    utils.tradPays(country);
   }
 
 
   // Récupération données météo (OpenWeatherMap's API) :
-  getJSON('http://api.openweathermap.org/data/2.5/weather?q=' + city + ',' + country + '&units=metric&APPID=8445323e2d375eef7e097a6617b4af68', function(miss, response){
+  getJSON('http://api.openweathermap.org/data/2.5/weather?q=' + city + utils.tradPays(country) + '&units=metric&APPID=8445323e2d375eef7e097a6617b4af68', function(miss, response){
 
 
     // ====================================================

@@ -91,34 +91,34 @@ var tradPays = function (country) {
   switch (country) {
     // FRANCE
     case "France":
-      country = "FR";
+      country = ",FR";
       break;
 
     // BELGIQUE
     case "Belgique":
-      country = "BE";
+      country = ",BE";
       break;
     case "Belgium":
-      country = "BE";
+      country = ",BE";
       break;
 
     // CANADA & QUÉBEC
     case "Canada":
-      country = "CA";
+      country = ",CA";
       break;
     case "Quebec":
-      country = "CA";
+      country = ",CA";
       break;
     case "Québec":
-      country = "CA";
+      country = ",CA";
       break;
 
     // SUISSE
     case "Suisse":
-      country = "CH";
+      country = ",CH";
       break;
     case "Switzerland":
-      country = "CH";
+      country = ",CH";
       break;
 
     default:
