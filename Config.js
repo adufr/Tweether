@@ -5,7 +5,7 @@
 // ====================================================
 
 // État du bot (on/off) :
-var state = "off";
+var state = "on";
 
 // Nom du compte :
 var accountName = "Tweether01";
