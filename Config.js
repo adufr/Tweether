@@ -4,6 +4,8 @@
 // ====================================================
 // ====================================================
 
+// État du bot (on/off) :
+var state = "off";
 
 // Nom du compte :
 var accountName = "Tweether01";
@@ -24,6 +26,10 @@ var errorInvalidLoc = "\n\n⚠️ Une erreur est survenue lors de l'envoi de vot
 // ====================================================
 
 // Méthodes pour récupérer les variables :
+var getState = function() {
+  return state;
+}
+
 var getAccountName = function() {
   return accountName;
 }
@@ -46,6 +52,7 @@ var getErrorInvalidLoc = function() {
 
 
 // On rend les méthodes accessibles :
+exports.getState = getState;
 exports.getAccountName = getAccountName;
 exports.getError = getError;
 exports.getErrorNoLoc = getErrorNoLoc;
