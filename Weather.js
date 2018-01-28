@@ -330,7 +330,7 @@ var translateDesc = function (description) {
 
     // AUTRES
     default:
-      meteoDesc = "ERREUR ! Description inconnue...";
+      meteoDesc = "Une erreur est survenue";
       meteoIcon = "❌";
   }
 
@@ -369,7 +369,7 @@ var getWindDir = function (angle) {
   } else if ((angle > 337.5) && (angle <= 360)) {
     meteoWindDir = "⬇️ Nord";
   } else {
-    meteoWindDir = "Erreur !";
+    meteoWindDir = "Direction indéterminée";
   }
 
 }
