@@ -82,6 +82,40 @@ exports.getTodaysDate = getTodaysDate;
 
 // ====================================================
 // ====================================================
+// == Heure à partir du TS UNIX (format hh/mm/ss)  ====
+// ====================================================
+// ====================================================
+
+
+var getTimeFromTimeStamp = function (timestamp) {
+
+  // On convertit en millisecondes
+  var date = new Date(timestamp*1000);
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+
+  function addZero(i) {
+    if (i < 10) {
+        i = "0" + i;
+    } return i;
+  }
+
+  // Affichage format 18h56
+  var time = addZero(hours) + 'h' + addZero(minutes);
+
+  return time;
+}
+
+
+// On rend la méthode accessible :
+exports.getTimeFromTimeStamp = getTimeFromTimeStamp;
+
+
+
+
+
+// ====================================================
+// ====================================================
 // == Traduction du pays ==============================
 // ====================================================
 // ====================================================
