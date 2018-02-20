@@ -9,6 +9,7 @@ var state = "on";
 
 // Nom du compte :
 var accountName = "Tweether01";
+//var accountName = "TestBot96875418";
 
 // Messages d'erreur :
 var error = "\n\n⚠️ Une erreur est survenue lors de l'envoi de votre bulletin météo !\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
