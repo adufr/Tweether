@@ -4,7 +4,7 @@
 // ====================================================
 // ====================================================
 
-var getHour = function () {
+var getTime = function () {
 
   // Permet d'afficher 09h09 au lieu de 9h9 :
   function addZero(i) {
@@ -19,7 +19,7 @@ var getHour = function () {
 
 
 // On rend les méthodes accessibles :
-exports.getHour = getHour;
+exports.getTime = getTime;
 
 
 
@@ -32,7 +32,7 @@ exports.getHour = getHour;
 // ====================================================
 // ====================================================
 
-var getHourWithSeconds = function () {
+var getTimeWithSeconds = function () {
 
   // Permet d'afficher 09h09:09 au lieu de 9h9:9 :
   function addZero(i) {
@@ -47,7 +47,7 @@ var getHourWithSeconds = function () {
 
 
 // On rend les méthodes accessibles :
-exports.getHourWithSeconds = getHourWithSeconds;
+exports.getTimeWithSeconds = getTimeWithSeconds;
 
 
 

@@ -15,7 +15,7 @@ var errorsPath = "/home/arthur/Tweether/src/logs/errors.txt";
 var statusPath = "/home/arthur/Tweether/src/logs/status.txt";
 
 var timestamp = "=================================================\n" +
-                "====> " + utils.getTodaysDate() + "  A  " + utils.getHourWithSeconds() + " <==================\n" +
+                "====> " + utils.getTodaysDate() + "  A  " + utils.getTimeWithSeconds() + " <==================\n" +
                 "=================================================\n";
 
 

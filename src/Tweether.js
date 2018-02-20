@@ -155,7 +155,7 @@ function whatsTheWeatherIn(location, user) {
     if (miss == null) {
 
       // Construction du tweet :
-      meteoTime = utils.getHour();
+      meteoTime = utils.getTime();
       meteoCity = response.name;
       meteoCountry = response.sys.country;
       meteoCurrTemp = response.main.temp;
