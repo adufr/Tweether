@@ -183,7 +183,8 @@ function whatsTheWeatherIn(location, user) {
             + "☁️ Couvert à : " + meteoClouds + "%\n"
             + "🌪️ " + meteoWindSpeed + " m/s - " + meteoWindDir + "\n\n"
 
-            + "☀️ Lever : " + sunrise + " - 🌒 Coucher : " + sunset + "\n\n"
+            + "☀️ Lever : " + sunrise + "\n"
+            + "🌒 Coucher : " + sunset + "\n\n"
 
             + weather.getMessage(meteoClouds, meteoCurrTemp) + " (" + version.getVersion() + ")";
 
