@@ -6,12 +6,12 @@
 
 
 // Packages :
-var Twit = require('twit');
+const Twit = require('twit');
 // Autres fichiers :
-var login = require('./Login');
-var twitter = require('./Twitter');
-var version = require('./Version');
-var logs = require('./Logs');
+const login = require('./Login');
+const twitter = require('./Twitter');
+const version = require('./Version');
+const logs = require('./Logs');
 
 
 // LOG : Démarrage du script :

@@ -6,8 +6,8 @@
 
 
 // Package :
-var fs = require('fs');
-var utils = require('./Utils');
+const fs = require('fs');
+const utils = require('./Utils');
 
 // Variables :
 var tweetsPath = "/home/arthur/Tweether/src/logs/tweets.txt";

@@ -6,10 +6,10 @@
 
 
 // Packages :
-var Twit = require('twit');
+const Twit = require('twit');
 // Autres fichiers :
-var login = require('./Login');
-var logs = require('./Logs');
+const login = require('./Login');
+const logs = require('./Logs');
 
 
 // Création instance bot avec les tokens situés dans le fichier login :

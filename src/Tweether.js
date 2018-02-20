@@ -6,16 +6,16 @@
 
 
 // Packages :
-var Twit = require('twit');
-var getJSON = require('get-json')
+const Twit = require('twit');
+const getJSON = require('get-json')
 // Autres fichiers :
-var login = require('./Login');
-var weather = require('./Weather');
-var twitter = require('./Twitter');
-var utils = require('./Utils');
-var config = require('./Config');
-var version = require('./Version');
-var logs = require('./Logs');
+const login = require('./Login');
+const weather = require('./Weather');
+const twitter = require('./Twitter');
+const utils = require('./Utils');
+const config = require('./Config');
+const version = require('./Version');
+const logs = require('./Logs');
 
 
 
