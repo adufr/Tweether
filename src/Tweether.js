@@ -162,7 +162,8 @@ function whatsTheWeatherIn(location, user) {
       meteoMinTemp = response.main.temp_min;
       meteoMaxTemp = response.main.temp_max;
       meteoClouds = response.clouds.all;
-      meteoHumidity = response.main.humidity;
+      sunrise = utils.getTimeFromTimeStamp(response.sys.sunrise);
+      sunset = utils.getTimeFromTimeStamp(response.sys.sunset);
       meteoWindSpeed = response.wind.speed;
 
 
@@ -175,12 +176,15 @@ function whatsTheWeatherIn(location, user) {
 
 
       // Assemblage du tweet :
-      meteo = "@" + user + "\n\n️" + meteoIcon + " " + meteoCity + " (" + meteoCountry + ") : " + meteoDesc + " (" + meteoTime + ")\n\n"
-            + "🌡️ Actuellement : " + Math.round(meteoCurrTemp) + "°C\n"
+      meteo = "@" + user + "\n\n️" + meteoIcon + " " + meteoCity + " (" + meteoCountry + ") : " + meteoDesc + " (" + meteoTime + ")\n"
+            + "🌡️ Actuellement : " + Math.round(meteoCurrTemp) + "°C\n\n"
+
             + "🌡️ Min : " + Math.round(meteoMinTemp) + "°C - Max : " + Math.round(meteoMaxTemp) + "°C\n"
             + "☁️ Couvert à : " + meteoClouds + "%\n"
-            + "💧 Humidité : " + meteoHumidity + "%\n"
             + "🌪️ " + meteoWindSpeed + " m/s - " + meteoWindDir + "\n\n"
+
+            + "☀️ Lever : " + sunrise + " - 🌒 Coucher : " + sunset + "\n\n"
+
             + weather.getMessage(meteoClouds, meteoCurrTemp) + " (" + version.getVersion() + ")";
 
 
