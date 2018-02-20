@@ -10,9 +10,9 @@ var fs = require('fs');
 var utils = require('./Utils');
 
 // Variables :
-var tweetsPath = "/home/arthur/Tweether/logs/tweets.txt";
-var errorsPath = "/home/arthur/Tweether/logs/errors.txt";
-var statusPath = "/home/arthur/Tweether/logs/status.txt";
+var tweetsPath = "/home/arthur/Tweether/src/logs/tweets.txt";
+var errorsPath = "/home/arthur/Tweether/src/logs/errors.txt";
+var statusPath = "/home/arthur/Tweether/src/logs/status.txt";
 
 var timestamp = "=================================================\n" +
                 "====> " + utils.getTodaysDate() + "  A  " + utils.getHourWithSeconds() + " <==================\n" +
