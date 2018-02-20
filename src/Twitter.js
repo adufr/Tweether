@@ -39,7 +39,7 @@ var sendTweet = function (message) {
 
   // Vérification longueur :
   // (uniquement utile pour l'envoi manuel du changelog)
-  if (message.length <= 300) {
+  if (message.length <= 320) {
 
 
     // Envoi du tweet via Twit
