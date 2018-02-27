@@ -6,10 +6,15 @@
 
 // État du bot (on/off) :
 var state = "on";
+var debug = "true";
 
 // Nom du compte :
-var accountName = "Tweether01";
-//var accountName = "TestBot96875418";
+if (debug == "true")  {
+  var accountName = "TestBot96875418";
+} else {
+  var accountName = "Tweether01";
+}
+
 
 // Messages d'erreur :
 var error = "\n\n⚠️ Une erreur est survenue lors de l'envoi de votre bulletin météo !\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
@@ -46,6 +51,10 @@ var getErrorInvalidLoc = function() {
   return errorInvalidLoc;
 }
 
+var getDebugState = function() {
+  return debug;
+}
+
 
 // On rend les méthodes accessibles :
 exports.getState = getState;
@@ -53,3 +62,4 @@ exports.getAccountName = getAccountName;
 exports.getError = getError;
 exports.getErrorNoLoc = getErrorNoLoc;
 exports.getErrorInvalidLoc = getErrorInvalidLoc;
+exports.getDebugState = getDebugState;
