@@ -16,6 +16,7 @@ const utils = require('./Utils');
 const config = require('./Config');
 const version = require('./Version');
 const logs = require('./Logs');
+const temp = require('./Temp');
 
 
 
@@ -109,121 +110,5 @@ function main() {
 
     }
   }
-
-}
-
-
-
-
-
-
-
-// ====================================================
-// ====================================================
-// == Récupération de la météo :  =====================
-// ====================================================
-// ====================================================
-
-
-// Récupération de la météo :
-function whatsTheWeatherIn(location, user) {
-
-
-  // Traitement "location" & transformation en ville + pays :
-  // Vérification : pays set ou non
-  if (location.indexOf(",") == -1) {
-
-    var city = location;
-    var country = "";
-
-  } else {
-    var temp = location.split(", ");
-    var city = temp[0];
-    var country = temp[1];
-  }
-
-
-  // Récupération données météo (OpenWeatherMap's API) :
-  getJSON('http://api.openweathermap.org/data/2.5/weather?q=' + city + utils.tradPays(country) + '&units=metric&APPID=8445323e2d375eef7e097a6617b4af68', function(miss, response){
-
-
-    // ====================================================
-    // == Préparation envoie de la météo :  ===============
-    // ====================================================
-
-    // Vérification réception des données :
-    if (miss == null) {
-
-      // Construction du tweet :
-      meteoTime = utils.getTime();
-      meteoCity = response.name;
-      meteoCountry = response.sys.country;
-      meteoCurrTemp = response.main.temp;
-      meteoMinTemp = response.main.temp_min;
-      meteoMaxTemp = response.main.temp_max;
-      meteoClouds = response.clouds.all;
-      sunrise = utils.getTimeFromTimeStamp(response.sys.sunrise);
-      sunset = utils.getTimeFromTimeStamp(response.sys.sunset);
-      meteoWindSpeed = response.wind.speed;
-
-
-      // Traduction de la description :
-      // + récupération de l'icône :
-      weather.translateDesc(response.weather[0].description);
-
-      // Traduction de l'angle de provenance du vent en direction :
-      weather.getWindDir(response.wind.deg);
-
-
-      // Assemblage du tweet :
-      meteo = "@" + user + "\n\n️" + meteoIcon + " " + meteoCity + " (" + meteoCountry + ") : " + meteoDesc + " (" + meteoTime + ")\n"
-            + "🌡️ Actuellement : " + Math.round(meteoCurrTemp) + "°C\n\n"
-
-            + "🌡️ Min : " + Math.round(meteoMinTemp) + "°C - Max : " + Math.round(meteoMaxTemp) + "°C\n"
-            + "☁️ Couvert à : " + meteoClouds + "%\n"
-            + "🌪️ " + meteoWindSpeed + " m/s - " + meteoWindDir + "\n\n"
-
-            + "☀️ Lever : " + sunrise + "\n"
-            + "🌒 Coucher : " + sunset + "\n\n"
-
-            + weather.getMessage(meteoClouds, meteoCurrTemp) + " (" + version.getVersion() + ")";
-
-
-
-      // Si le tweet ne contient pas "ERREUR" :
-      if (meteo.indexOf("ERREUR") == -1) {
-
-        // Envoie du Tweet :
-        twitter.sendTweet(meteo);
-        // LOG : Envoie du tweet :
-        logs.logTweet(meteo);
-
-      } else {
-
-        // Envoie d'un tweet d'erreur :
-        twitter.sendTweet("@" + user + config.getError());
-        // LOG : Tweet d'erreur :
-        logs.logTweet("@" + user + config.getError());
-
-      }
-
-
-
-      // ====================================================
-      // == Donnés météo non reçues :  ======================
-      // ====================================================
-
-    } else {
-
-      // Envoie d'un tweet d'erreur ciblé :
-      twitter.sendTweet("@" + user + config.getErrorInvalidLoc());
-      // LOG : Tweet d'erreur :
-      logs.logTweet("@" + user + config.getErrorInvalidLoc());
-
-    }
-
-
-  })
-
 
 }
