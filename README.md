@@ -40,6 +40,7 @@ crontab -e
 ## Auteurs
 
 * **Arthur Dufour** - *Projet initial* - [Woosy](https://github.com/Woosy)
+* **Valentin Lardet** - *Tests et idées* - [valentinldt](https://github.com/valentinldt)
 
 Jetez également un coup d'oeil à la liste des [contributeurs](https://github.com/woosy/tweether/contributors) pour voir qui a participé à ce projet.
 
