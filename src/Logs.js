@@ -8,11 +8,18 @@
 // Package :
 const fs = require('fs');
 const utils = require('./Utils');
+const config = require('./Config');
 
 // Variables :
-var tweetsPath = "/home/arthur/Tweether/src/logs/tweets.txt";
-var errorsPath = "/home/arthur/Tweether/src/logs/errors.txt";
-var statusPath = "/home/arthur/Tweether/src/logs/status.txt";
+if (config.getDebugState() == "true") {
+  var tweetsPath = "logs/tweets.txt";
+  var errorsPath = "logs/errors.txt";
+  var statusPath = "logs/status.txt";
+} else {
+  var tweetsPath = "/home/arthur/Tweether/src/logs/tweets.txt";
+  var errorsPath = "/home/arthur/Tweether/src/logs/errors.txt";
+  var statusPath = "/home/arthur/Tweether/src/logs/status.txt";
+}
 
 var timestamp = "=================================================\n" +
                 "====> " + utils.getTodaysDate() + "  A  " + utils.getTimeWithSeconds() + " <==================\n" +
