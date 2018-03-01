@@ -91,7 +91,7 @@ function main() {
         if (data.users[i].location.length != 0) {
 
           // On transmet location & screen_name :
-          whatsTheWeatherIn(data.users[i].location, data.users[i].screen_name);
+          temp.whatsTheWeatherIn(data.users[i].location, data.users[i].screen_name);
 
           // Location non définie :
         } else {
