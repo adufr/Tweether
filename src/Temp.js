@@ -69,7 +69,7 @@ function whatsTheWeatherIn(location, user, replyId) {
       weather.getWindDir(response.wind.deg);
 
       // Assemblage du tweet :
-      meteo = "@" + user + " (" + version.getVersion() + ")\n\n️" + meteoIcon + " " + meteoCity + " (" + meteoCountry + ") : " + meteoDesc + " (" + meteoTime + ")\n"
+      meteo = "@" + user + " (version " + version.getVersion() + ")\n\n️" + meteoIcon + " " + meteoCity + " (" + meteoCountry + ") : " + meteoDesc + " (" + meteoTime + ")\n"
             + "🌡️ Actuellement : " + Math.round(meteoCurrTemp) + "°C\n\n"
 
             + "🌡️ Min : " + Math.round(meteoMinTemp) + "°C - Max : " + Math.round(meteoMaxTemp) + "°C\n"
