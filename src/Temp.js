@@ -10,7 +10,6 @@ const getJSON = require('get-json')
 // Autres fichiers :
 const weather = require('./Weather');
 const twitter = require('./Twitter');
-const version = require('./Version');
 const utils = require('./Utils');
 const config = require('./Config');
 const logs = require('./Logs');
@@ -69,7 +68,7 @@ function whatsTheWeatherIn(location, user, replyId) {
       weather.getWindDir(response.wind.deg);
 
       // Assemblage du tweet :
-      meteo = "@" + user + " (" + version.getVersion() + ")\n\n️" + meteoIcon + " " + meteoCity + " (" + meteoCountry + ") : " + meteoDesc + " (" + meteoTime + ")\n"
+      meteo = "@" + user + "\n\n️" + meteoIcon + " " + meteoCity + " (" + meteoCountry + ") : " + meteoDesc + " (" + meteoTime + ")\n"
             + "🌡️ Actuellement : " + Math.round(meteoCurrTemp) + "°C\n\n"
 
             + "🌡️ Min : " + Math.round(meteoMinTemp) + "°C - Max : " + Math.round(meteoMaxTemp) + "°C\n"
@@ -77,7 +76,7 @@ function whatsTheWeatherIn(location, user, replyId) {
             + "🌪️ " + meteoWindSpeed + " m/s - " + meteoWindDir + "\n\n"
 
             + "☀️ Lever : " + sunrise + "\n"
-            + "🌒 Coucher : " + sunset + "\n";
+            + "🌒 Coucher : " + sunset + "\n\n";
 
       // Si le tweet ne contient pas "ERREUR" :
       if (meteo.indexOf("ERREUR") == -1) {
