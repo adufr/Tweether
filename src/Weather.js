@@ -4,7 +4,6 @@
 // ====================================================
 // ====================================================
 
-
 var translateDesc = function (description) {
 
   switch (description) {
@@ -61,7 +60,6 @@ var translateDesc = function (description) {
     break;
 
 
-
     // Group 3XX : Drizzle
     case "light intensity drizzle":
       meteoDesc = "Bruine légère";
@@ -107,9 +105,6 @@ var translateDesc = function (description) {
       meteoDesc = "Bruine a forte intensité";
       meteoIcon = "🌧️";
     break;
-
-
-
 
 
     // Group 5XX : rain
@@ -214,7 +209,6 @@ var translateDesc = function (description) {
       meteoDesc = "Grosses averses neigeuses";
       meteoIcon = "🌨️";
     break;
-
 
 
     // Group 7XX : Atmosphere
@@ -340,13 +334,11 @@ var translateDesc = function (description) {
 exports.translateDesc = translateDesc;
 
 
-
 // ====================================================
 // ====================================================
 // == Traduction de l'angle en message avec emoji :  ==
 // ====================================================
 // ====================================================
-
 
 var getWindDir = function (angle) {
 
@@ -378,14 +370,11 @@ var getWindDir = function (angle) {
 exports.getWindDir = getWindDir;
 
 
-
-
 // ====================================================
 // ====================================================
 // == Message de fin (dépendant de divers paramètres ==
 // ====================================================
 // ====================================================
-
 
 var getMessage = function(meteoClouds, meteoCurrTemp) {
 

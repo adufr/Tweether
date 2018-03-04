@@ -15,12 +15,10 @@ if (debug == "true")  {
   var accountName = "Tweether01";
 }
 
-
 // Messages d'erreur :
-var error = "\n\n⚠️ Une erreur est survenue lors de l'envoi de votre bulletin météo !\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
-var errorNoLoc = "\n\n⚠️ Une erreur est survenue lors de l'envoi de votre bulletin météo !\n⚠️ Vous n'avez pas défini de localisation sur votre page de profil !\n(Exemple de localisation : Lyon, France)\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
-var errorInvalidLoc = "\n\n⚠️ Une erreur est survenue lors de l'envoi de votre bulletin météo !\n⚠️ Veuillez indiquer une localisation valide !\n(Exemple de localisation : Lyon, France)\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
-
+var error = "\n\n⚠️ Une erreur est survenue...\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
+var errorNoLoc = "\n\n⚠️ Une erreur est survenue...\n⚠️ Vous n'avez pas défini de localisation sur votre page de profil !\n(Exemple de localisation : Lyon, France)\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
+var errorInvalidLoc = "\n\n⚠️ Une erreur est survenue...\n⚠️ Veuillez indiquer une localisation valide !\n(Exemple de localisation : Lyon, France)\n\n⚠️ Si le problème persiste, merci de contacter @ Woosy__\n📝 https://github.com/Woosy/Tweether/issues/new";
 
 
 

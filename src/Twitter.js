@@ -4,27 +4,14 @@
 // ====================================================
 // ====================================================
 
-
 // Packages :
 const Twit = require('twit');
 // Autres fichiers :
 const login = require('./Login');
 const logs = require('./Logs');
 
-
 // Création instance bot avec les tokens situés dans le fichier login :
-//
-//  module.exports = {
-//    consumer_key:         'replace_by_consumer_key',
-//    consumer_secret:      'replace_by_consumer_secret',
-//    access_token:         'replace_by_access_token',
-//    access_token_secret:  'replace_by_token_secret',
-//    timeout_ms:           60*1000, // Optional
-//  }
-//
-
 var T = new Twit(login);
-
 
 
 // ====================================================
@@ -33,14 +20,11 @@ var T = new Twit(login);
 // ====================================================
 // ====================================================
 
-
 var sendTweet = function (message, replyId) {
-
 
   // Vérification longueur :
   // (uniquement utile pour l'envoi manuel du changelog)
   if (message.length <= 320) {
-
 
     // Envoi du tweet via Twit
     if (replyId == "none") {
@@ -52,9 +36,7 @@ var sendTweet = function (message, replyId) {
         status: message,
         in_reply_to_status_id: replyId
       }
-      console.log('send reply');
     }
-
 
     T.post('statuses/update', tweet, posted);
 
@@ -63,8 +45,6 @@ var sendTweet = function (message, replyId) {
       if (err) {
         // LOG : Erreur lors de l'envoi du tweet :
         logs.logError("Erreur : le tweet n'a pas été posté : " + err);
-      } else {
-        // (TWEET ENVOYÉ -> PAS DE LOG)
       }
     }
 
@@ -76,7 +56,6 @@ var sendTweet = function (message, replyId) {
   }
 
 }
-
 
 // On rend la méthode accessible :
 exports.sendTweet = sendTweet;

@@ -17,18 +17,13 @@ var getTime = function () {
   return addZero(time.getHours()) + "h" + addZero(time.getMinutes());
 }
 
-
 // On rend les méthodes accessibles :
 exports.getTime = getTime;
 
 
-
-
-
-
 // ====================================================
 // ====================================================
-// == Heure actuelle (au format hh:mm:ss)  ===============
+// == Heure actuelle (au format hh:mm:ss)  ============
 // ====================================================
 // ====================================================
 
@@ -45,12 +40,8 @@ var getTimeWithSeconds = function () {
   return addZero(time.getHours()) + "h" + addZero(time.getMinutes() + ":" + addZero(time.getSeconds()));
 }
 
-
 // On rend les méthodes accessibles :
 exports.getTimeWithSeconds = getTimeWithSeconds;
-
-
-
 
 
 // ====================================================
@@ -72,12 +63,8 @@ var getTodaysDate = function () {
   return addZero(date.getDate()) + "/" + addZero(date.getMonth()+1) + "/" + date.getFullYear();
 }
 
-
 // On rend les méthodes accessibles :
 exports.getTodaysDate = getTodaysDate;
-
-
-
 
 
 // ====================================================
@@ -85,7 +72,6 @@ exports.getTodaysDate = getTodaysDate;
 // == Heure à partir du TS UNIX (format hh/mm/ss)  ====
 // ====================================================
 // ====================================================
-
 
 var getTimeFromTimeStamp = function (timestamp) {
 
@@ -106,12 +92,8 @@ var getTimeFromTimeStamp = function (timestamp) {
   return time;
 }
 
-
 // On rend la méthode accessible :
 exports.getTimeFromTimeStamp = getTimeFromTimeStamp;
-
-
-
 
 
 // ====================================================

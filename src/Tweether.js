@@ -4,7 +4,6 @@
 // ====================================================
 // ====================================================
 
-
 // Packages :
 const Twit = require('twit');
 const getJSON = require('get-json')
@@ -18,22 +17,8 @@ const version = require('./Version');
 const logs = require('./Logs');
 const temp = require('./Temp');
 
-
-
 // Création instance bot avec les tokens situés dans le fichier login :
-//
-//  module.exports = {
-//    consumer_key:         'replace_by_consumer_key',
-//    consumer_secret:      'replace_by_consumer_secret',
-//    access_token:         'replace_by_access_token',
-//    access_token_secret:  'replace_by_token_secret',
-//    timeout_ms:           60*1000, // Optional
-//  }
-//
-
 var T = new Twit(login);
-
-
 
 
 // ====================================================
@@ -51,15 +36,11 @@ if (config.getState() == "on") {
 }
 
 
-
-
-
 // ====================================================
 // ====================================================
-// == Récupération des followers :  ===================
+// == Main :  =========================================
 // ====================================================
 // ====================================================
-
 
 // Fonction principale :
 function main() {
@@ -69,10 +50,8 @@ function main() {
     user_id: config.getAccountName()
   }
 
-
   // Récupération de la liste des followers du bot :
   T.get('followers/list', id, gotData);
-
 
   // Traitement des données :
   function gotData(err, data, response) {
@@ -81,7 +60,7 @@ function main() {
     if (err) {
       logs.logError("Erreur (Twitter) récupération liste des followers : " + err);
 
-      // Pas d'erreur :
+    // Pas d'erreur :
     } else {
 
       // On boucle sur chaque followers du bot :
@@ -109,6 +88,7 @@ function main() {
       }
 
     }
+
   }
 
 }
