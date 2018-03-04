@@ -27,7 +27,7 @@ const logs = require('./Logs');
 
 
 // Récupération de la météo :
-function whatsTheWeatherIn(location, user) {
+function whatsTheWeatherIn(location, user, replyId) {
 
 
     // Traitement "location" & transformation en ville + pays :
@@ -92,17 +92,31 @@ function whatsTheWeatherIn(location, user) {
         // Si le tweet ne contient pas "ERREUR" :
         if (meteo.indexOf("ERREUR") == -1) {
 
-          // Envoie du Tweet :
-          twitter.sendTweet(meteo);
-          // LOG : Envoie du tweet :
-          logs.logTweet(meteo);
+          if (replyId == "none") {
+            // Envoie du Tweet :
+            twitter.sendTweet(meteo, "none");
+            // LOG : Envoie du tweet :
+            logs.logTweet(meteo);
+          } else {
+            // Envoie du Tweet :
+            twitter.sendTweet(meteo, replyId);
+            // LOG : Envoie du tweet :
+            logs.logTweet(meteo);
+          }
 
         } else {
 
-          // Envoie d'un tweet d'erreur :
-          twitter.sendTweet("@" + user + config.getError());
-          // LOG : Tweet d'erreur :
-          logs.logTweet("@" + user + config.getError());
+          if (replyId == "none") {
+            // Envoie d'un tweet d'erreur :
+            twitter.sendTweet("@" + user + config.getError(), "none");
+            // LOG : Tweet d'erreur :
+            logs.logTweet("@" + user + config.getError());
+          } else {
+            // Envoie d'un tweet d'erreur :
+            twitter.sendTweet("@" + user + config.getError(), replyId);
+            // LOG : Tweet d'erreur :
+            logs.logTweet("@" + user + config.getError());
+          }
 
         }
 
@@ -114,10 +128,22 @@ function whatsTheWeatherIn(location, user) {
 
       } else {
 
-        // Envoie d'un tweet d'erreur ciblé :
-        twitter.sendTweet("@" + user + config.getErrorInvalidLoc());
-        // LOG : Tweet d'erreur :
-        logs.logTweet("@" + user + config.getErrorInvalidLoc());
+        if (replyId == "none") {
+
+          // Envoie d'un tweet d'erreur ciblé :
+          twitter.sendTweet("@" + user + config.getErrorInvalidLoc(), "none");
+          // LOG : Tweet d'erreur :
+          logs.logTweet("@" + user + config.getErrorInvalidLoc());
+
+        } else {
+
+          // Envoie d'un tweet d'erreur ciblé :
+          twitter.sendTweet("@" + user + config.getErrorInvalidLoc(), replyId);
+          // LOG : Tweet d'erreur :
+          logs.logTweet("@" + user + config.getErrorInvalidLoc());
+
+        }
+
 
       }
 

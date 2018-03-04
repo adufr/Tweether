@@ -34,7 +34,7 @@ var T = new Twit(login);
 // ====================================================
 
 
-var sendTweet = function (message) {
+var sendTweet = function (message, replyId) {
 
 
   // Vérification longueur :
@@ -43,9 +43,18 @@ var sendTweet = function (message) {
 
 
     // Envoi du tweet via Twit
-    var tweet = {
-      status: message
+    if (replyId == "none") {
+      var tweet = {
+        status: message
+      }
+    } else {
+      var tweet = {
+        status: message,
+        in_reply_to_status_id: replyId
+      }
+      console.log('send reply');
     }
+
 
     T.post('statuses/update', tweet, posted);
 
@@ -58,7 +67,6 @@ var sendTweet = function (message) {
         // (TWEET ENVOYÉ -> PAS DE LOG)
       }
     }
-
 
   } else {
 

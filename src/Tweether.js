@@ -91,7 +91,7 @@ function main() {
         if (data.users[i].location.length != 0) {
 
           // On transmet location & screen_name :
-          temp.whatsTheWeatherIn(data.users[i].location, data.users[i].screen_name);
+          temp.whatsTheWeatherIn(data.users[i].location, data.users[i].screen_name, "none");
 
           // Location non définie :
         } else {
@@ -100,7 +100,7 @@ function main() {
           logs.logError("Erreur : pas de location définie pour : " + data.users[i].screen_name);
 
           // Envoie message d'erreur : activer localisation
-          twitter.sendTweet("@" + data.users[i].screen_name + config.getErrorNoLoc());
+          twitter.sendTweet("@" + data.users[i].screen_name + config.getErrorNoLoc(), "none");
           // LOG : Tweet d'erreur :
           logs.logTweet("@" + data.users[i].screen_name + config.getErrorNoLoc());
 
