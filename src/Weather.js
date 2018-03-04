@@ -6,6 +6,9 @@
 
 var translateDesc = function (description) {
 
+  var date = new Date().getHours();
+  console.log(date);
+
   switch (description) {
 
     // Group 2XX : Thunderstorm
@@ -261,22 +264,38 @@ var translateDesc = function (description) {
     // Group 80X : Clear & Clouds
     case "clear sky":
       meteoDesc = "Ciel dégagé";
-      meteoIcon = "☀️";
+      if (date >= 7 && date <= 20) {
+        meteoIcon = "☀️";
+      } else {
+        meteoIcon = "🌒";
+      }
     break;
 
     case "few clouds":
       meteoDesc = "Ciel peu nuageux";
-      meteoIcon = "🌤️";
+      if (date > 7 && date < 20) {
+        meteoIcon = "🌤️";
+      } else {
+        meteoIcon = "☁️🌒";
+      }
     break;
 
     case "scattered clouds":
       meteoDesc = "Nuages dispersés";
-      meteoIcon = "🌤️";
+      if (date > 7 && date < 20) {
+        meteoIcon = "🌤️";
+      } else {
+        meteoIcon = "☁️🌒";
+      }
     break;
 
     case "broken clouds":
       meteoDesc = "Nuages dispersés";
-      meteoIcon = "🌤️";
+      if (date > 7 && date < 20) {
+        meteoIcon = "🌤️";
+      } else {
+        meteoIcon = "☁️🌒";
+      }
     break;
 
     case "overcast clouds":
@@ -308,7 +327,11 @@ var translateDesc = function (description) {
 
     case "hot":
       meteoDesc = "Chaud";
-      meteoIcon = "☀️";
+      if (date > 7 && date < 20) {
+        meteoIcon = "☀️";
+      } else {
+        meteoIcon = "🌒";
+      }
     break;
 
     case "windy":
