@@ -76,7 +76,7 @@ function whatsTheWeatherIn(location, user, replyId) {
             + "🌪️ " + meteoWindSpeed + " m/s - " + meteoWindDir + "\n\n"
 
             + "☀️ Lever : " + sunrise + "\n"
-            + "🌒 Coucher : " + sunset + "\n\n"
+            + "🌒 Coucher : " + sunset + "\n\n";
 
       // Si le tweet ne contient pas "ERREUR" :
       if (meteo.indexOf("ERREUR") == -1) {
