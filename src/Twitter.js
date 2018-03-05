@@ -59,3 +59,33 @@ var sendTweet = function (message, replyId) {
 
 // On rend la méthode accessible :
 exports.sendTweet = sendTweet;
+
+
+// ====================================================
+// ====================================================
+// == Fav' un tweet :  ================================
+// ====================================================
+// ====================================================
+
+var favTweet = function (tweet) {
+
+  var fav = {
+    id: tweet
+  }
+
+  T.post('favorites/create', fav, posted);
+
+  // Callback :
+  function posted(err, data, response) {
+    if (err) {
+      // LOG : Erreur lors de l'envoi du tweet :
+      logs.logError("Erreur : le fav' n'a pas été posté : " + err);
+    } else {
+      console.log("Le tweet a bien été fav");
+    }
+  }
+
+}
+
+// On rend la méthode accessible :
+exports.favTweet = favTweet;
