@@ -69,15 +69,30 @@ function whatsTheWeatherIn(location, user, replyId) {
       weather.getWindDir(response.wind.deg);
 
       // Assemblage du tweet :
-      meteo = "@" + user + " (version " + version.getVersion() + ")\n\n️" + meteoIcon + " " + meteoCity + " (" + meteoCountry + ") : " + meteoDesc + " (" + meteoTime + ")\n"
-            + "🌡️ Actuellement : " + Math.round(meteoCurrTemp) + "°C\n\n"
+      // Si message classique :
+      if (replyId == "none") {
+        meteo = "@" + user + " (version " + version.getVersion() + ")\n\n️" + meteoIcon + " " + meteoCity + " (" + meteoCountry + ") : " + meteoDesc + " (" + meteoTime + ")\n"
+              + "🌡️ Actuellement : " + Math.round(meteoCurrTemp) + "°C\n\n"
 
-            + "🌡️ Min : " + Math.round(meteoMinTemp) + "°C - Max : " + Math.round(meteoMaxTemp) + "°C\n"
-            + "☁️ Couvert à : " + meteoClouds + "%\n"
-            + "🌪️ " + meteoWindSpeed + " m/s - " + meteoWindDir + "\n\n"
+              + "🌡️ Min : " + Math.round(meteoMinTemp) + "°C - Max : " + Math.round(meteoMaxTemp) + "°C\n"
+              + "☁️ Couvert à : " + meteoClouds + "%\n"
+              + "🌪️ " + meteoWindSpeed + " m/s - " + meteoWindDir + "\n\n"
 
-            + "☀️ Lever : " + sunrise + "\n"
-            + "🌒 Coucher : " + sunset + "\n";
+              + "☀️ Lever : " + sunrise + "\n"
+              + "🌒 Coucher : " + sunset;
+      // Si reply :
+      } else {
+        meteo = "@" + user +"\n\n️" + meteoIcon + " " + meteoCity + " (" + meteoCountry + ") : " + meteoDesc + " (" + meteoTime + ")\n"
+              + "🌡️ Actuellement : " + Math.round(meteoCurrTemp) + "°C\n\n"
+
+              + "🌡️ Min : " + Math.round(meteoMinTemp) + "°C - Max : " + Math.round(meteoMaxTemp) + "°C\n"
+              + "☁️ Couvert à : " + meteoClouds + "%\n"
+              + "🌪️ " + meteoWindSpeed + " m/s - " + meteoWindDir + "\n\n"
+
+              + "☀️ Lever : " + sunrise + "\n"
+              + "🌒 Coucher : " + sunset + "\n\n"
+              + "(version " + version.getVersion() + ")";
+      }
 
       // Si le tweet ne contient pas "ERREUR" :
       if (meteo.indexOf("ERREUR") == -1) {
