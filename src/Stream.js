@@ -31,6 +31,7 @@ function tweetEvent(eventMsg) {
     /* On récupère les informations nécessaires
     à partir du Tweet qui a été envoyé au bot */
     var receiver = eventMsg.in_reply_to_screen_name;
+    var replyStatusId = eventMsg.in_reply_to_status_id_str;
     var message = eventMsg.text;
     var from = eventMsg.user.screen_name;
     var tweetId = eventMsg.id_str;
@@ -40,9 +41,14 @@ function tweetEvent(eventMsg) {
 
         // On vérifie que le message commence bien par le @ du bot
         if (message.startsWith("@" + config.getAccountName()) !=-1) {
-            var text = message.replace('@' + config.getAccountName() + ' ',"");
-            temp.whatsTheWeatherIn(text, from, tweetId);
-            twitter.favTweet(tweetId);
+
+            // On vérifie si le message n'est pas une réponse au bot
+            if (replyStatusId == null) {
+                var text = message.replace('@' + config.getAccountName() + ' ',"");
+                temp.whatsTheWeatherIn(text, from, tweetId);
+                twitter.favTweet(tweetId);
+            }
+
         }
 
     }
