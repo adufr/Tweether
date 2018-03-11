@@ -7,7 +7,6 @@
 var translateDesc = function (description) {
 
   var date = new Date().getHours();
-  console.log(date);
 
   switch (description) {
 

@@ -80,8 +80,6 @@ var favTweet = function (tweet) {
     if (err) {
       // LOG : Erreur lors de l'envoi du tweet :
       logs.logError("Erreur : le fav' n'a pas été posté : " + err);
-    } else {
-      console.log("Le tweet a bien été fav");
     }
   }
 

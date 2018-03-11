@@ -47,6 +47,7 @@ function tweetEvent(eventMsg) {
                 var text = message.replace('@' + config.getAccountName() + ' ',"");
                 temp.whatsTheWeatherIn(text, from, tweetId);
                 twitter.favTweet(tweetId);
+                console.log("De " + from + " : " + text);
             }
 
         }
